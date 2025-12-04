@@ -71,6 +71,16 @@ LINKERS = {
         shared_library_name_linker_flags_format = [],
         shared_library_flags = ["/DLL"],
     ),
+    LinkerType("solaris"): Linker(
+        shared_library_install_name_format = "{}",
+        default_shared_library_extension = "so",
+        default_shared_library_versioned_extension_format = "so.{}",
+        shared_library_name_linker_flags_format = [
+            "-Wl,-z,allextract",
+            "-Wl,-z,defaultextract",
+        ],
+        shared_library_flags = ["-shared"],
+    ),
 }
 
 IMPORT_LIBRARY_SUB_TARGET = "implib"

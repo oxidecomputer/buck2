@@ -125,6 +125,8 @@ fn os_type() -> String {
         "darwin".to_owned()
     } else if cfg!(target_os = "windows") {
         "windows".to_owned()
+    } else if cfg!(target_os = "illumos") {
+        "illumos".to_owned()
     } else {
         "unknown".to_owned()
     }
@@ -133,6 +135,11 @@ fn os_type() -> String {
 #[cfg(target_os = "windows")]
 fn os_version() -> Option<String> {
     winver::WindowsVersion::detect().map(|v| v.to_string())
+}
+
+#[cfg(target_os = "illumos")]
+fn os_version() -> Option<String> {
+    Some("helios-2".to_owned())
 }
 
 #[cfg(any(target_os = "linux", target_os = "macos"))]

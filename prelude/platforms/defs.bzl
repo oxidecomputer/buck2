@@ -58,6 +58,8 @@ def _host_os_configuration() -> str:
         return "prelude//os:macos"
     elif os.is_windows:
         return "prelude//os:windows"
+    elif os.is_illumos:
+        return "prelude//os:illumos"
     else:
         return "prelude//os:linux"
 

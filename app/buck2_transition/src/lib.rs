@@ -10,6 +10,7 @@
 
 #![feature(error_generic_member_access)]
 #![feature(try_blocks)]
+#![feature(used_with_arg)]
 
 pub(crate) mod transition;
 

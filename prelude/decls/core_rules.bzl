@@ -18,7 +18,7 @@ load(":remote_common.bzl", "remote_common")
 
 ExportFileDescriptionMode = ["reference", "copy"]
 
-PlatformExePlatform = ["linux", "macos", "windows"]
+PlatformExePlatform = ["linux", "macos", "windows", "illumos"]
 
 RemoteFileType = ["data", "executable", "exploded_zip"]
 

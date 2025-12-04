@@ -19,6 +19,7 @@ _OS_TRIPLES = {
     (Os("macos"), _cpu("x86_64")): "x86_64-apple-darwin",
     (Os("windows"), _cpu("arm64")): "aarch64-pc-windows-msvc",
     (Os("windows"), _cpu("x86_64")): "x86_64-pc-windows-msvc",
+    (Os("illumos"), _cpu("x86_64")): "x86_64-unknown-illumos",
 }
 
 def _exec_triple(ctx: AnalysisContext) -> str | None:

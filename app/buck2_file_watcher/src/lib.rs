@@ -14,6 +14,8 @@
 pub mod dep_files;
 #[cfg(fbcode_build)]
 mod edenfs;
+#[cfg(target_os = "illumos")]
+mod event_port;
 pub mod file_watcher;
 mod fs_hash_crawler;
 pub mod mergebase;

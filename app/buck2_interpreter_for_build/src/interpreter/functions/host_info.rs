@@ -48,6 +48,7 @@ fn new_host_info(
             platform("is_macos", InterpreterHostPlatform::MacOS),
             platform("is_windows", InterpreterHostPlatform::Windows),
             platform("is_freebsd", InterpreterHostPlatform::FreeBsd),
+            platform("is_illumos", InterpreterHostPlatform::Illumos),
             platform("is_unknown", InterpreterHostPlatform::Unknown),
         ],
     );

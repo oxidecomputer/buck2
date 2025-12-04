@@ -617,9 +617,19 @@ def rust_compile(
             separate_debug_info_path_file = None
             separate_debug_info_args = []
 
+        # For proc-macros on Solaris linker, we need to wrap static libraries with
+        # -z allextract/-z defaultextract to ensure all symbols are extracted into the .so
+        linker_args_for_file = link_args_output.link_args
+        if params.crate_type == CrateType("proc-macro") and compile_ctx.cxx_toolchain_info.linker_info.type == LinkerType("solaris"):
+            linker_args_for_file = cmd_args(
+                "-Wl,-z,allextract",
+                link_args_output.link_args,
+                "-Wl,-z,defaultextract",
+            )
+
         linker_argsfile, _ = ctx.actions.write(
             "{}/__{}_linker_args.txt".format(subdir, tempfile),
-            cmd_args(link_args_output.link_args, separate_debug_info_args),
+            cmd_args(linker_args_for_file, separate_debug_info_args),
             allow_args = True,
         )
         linker_hidden = link_args_output.hidden

@@ -246,14 +246,20 @@ impl NotifyFileWatcher {
         let data = Arc::new(Mutex::new(Ok(NotifyFileData::new())));
         let data2 = data.dupe();
         let root2 = root.dupe();
-        let mut watcher = notify::recommended_watcher(move |event| {
+
+        // Configure notify with a faster polling interval for platforms using PollWatcher
+        // (like illumos/SunOS). The default 30s is too slow for development.
+        let config = notify::Config::default()
+            .with_poll_interval(std::time::Duration::from_millis(500));
+
+        let mut watcher: RecommendedWatcher = notify::Watcher::new(move |event| {
             let mut guard = data2.lock().unwrap();
             if let Ok(state) = &mut *guard {
                 if let Err(e) = state.process(event, &root2, &cells, &ignore_specs) {
                     *guard = Err(e);
                 }
             }
-        })
+        }, config)
         .map_err(|e| from_any_with_tag(e, buck2_error::ErrorTag::NotifyWatcher))?;
         watcher
             .watch(root.root().as_path(), notify::RecursiveMode::Recursive)

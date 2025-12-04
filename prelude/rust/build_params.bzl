@@ -177,6 +177,7 @@ def _executable_prefix_suffix(linker_type: LinkerType, target_os_type: OsLookup)
     return {
         LinkerType("darwin"): ("", ""),
         LinkerType("gnu"): ("", ".exe") if target_os_type.os == Os("windows") else ("", ""),
+        LinkerType("solaris"): ("", ""),
         LinkerType("wasm"): ("", ".wasm"),
         LinkerType("windows"): ("", ".exe"),
     }[linker_type]
@@ -185,6 +186,7 @@ def _library_prefix_suffix(linker_type: LinkerType, target_os_type: OsLookup) ->
     return {
         LinkerType("darwin"): ("lib", ".dylib"),
         LinkerType("gnu"): ("", ".dll") if target_os_type.os == Os("windows") else ("lib", ".so"),
+        LinkerType("solaris"): ("lib", ".so"),
         LinkerType("wasm"): ("", ".wasm"),
         LinkerType("windows"): ("", ".dll"),
     }[linker_type]

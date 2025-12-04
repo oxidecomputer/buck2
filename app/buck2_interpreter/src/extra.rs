@@ -19,6 +19,7 @@ pub enum InterpreterHostPlatform {
     MacOS,
     Windows,
     FreeBsd,
+    Illumos,
     Unknown,
 }
 

@@ -10,7 +10,7 @@ load("@prelude//cxx:cxx_apple_linker_flags.bzl", "apple_extra_darwin_linker_flag
 load("@prelude//cxx:cxx_error_handler.bzl", "cxx_generic_error_handler")
 load("@prelude//cxx:debug.bzl", "SplitDebugMode")
 
-LinkerType = enum("gnu", "darwin", "windows", "wasm")
+LinkerType = enum("gnu", "darwin", "windows", "wasm", "solaris")
 
 ShlibInterfacesMode = enum(
     "disabled",

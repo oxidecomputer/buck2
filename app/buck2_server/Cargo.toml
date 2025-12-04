@@ -77,8 +77,10 @@ buck2_validation = { workspace = true }
 buck2_wrapper_common = { workspace = true }
 dice_futures = { workspace = true }
 
-[target.'cfg(any(target_os = "linux", target_os = "macos"))'.dependencies]
+[target.'cfg(any(target_os = "linux", target_os = "macos", target_os = "illumos"))'.dependencies]
 buck2_forkserver = { workspace = true }
+
+[target.'cfg(any(target_os = "linux", target_os = "macos"))'.dependencies]
 psutil = { workspace = true }
 
 [target.'cfg(windows)'.dependencies]

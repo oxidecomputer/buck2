@@ -34,6 +34,7 @@ pub fn get_host_info(
             "macos" => InterpreterHostPlatform::MacOS,
             "windows" => InterpreterHostPlatform::Windows,
             "freebsd" => InterpreterHostPlatform::FreeBsd,
+            "illumos" => InterpreterHostPlatform::Illumos,
             _ => InterpreterHostPlatform::Unknown,
         },
     };

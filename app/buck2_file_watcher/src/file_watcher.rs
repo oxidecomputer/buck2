@@ -29,6 +29,8 @@ use dice::DiceTransactionUpdater;
 use crate::edenfs::interface::EdenFsFileWatcher;
 #[cfg(fbcode_build)]
 use crate::edenfs::interface::EdenFsWatcherError;
+#[cfg(target_os = "illumos")]
+use crate::event_port::EventPortFileWatcher;
 use crate::fs_hash_crawler::FsHashCrawler;
 use crate::mergebase::Mergebase;
 use crate::notify::NotifyFileWatcher;
@@ -102,6 +104,11 @@ impl dyn FileWatcher {
             "notify" => Ok(Arc::new(
                 NotifyFileWatcher::new(project_root, cells, ignore_specs)
                     .buck_error_context("Creating notify file watcher")?,
+            )),
+            #[cfg(target_os = "illumos")]
+            "event_ports" => Ok(Arc::new(
+                EventPortFileWatcher::new(project_root, cells, ignore_specs)
+                    .buck_error_context("Creating event port file watcher")?,
             )),
             "fs_hash_crawler" => Ok(Arc::new(
                 FsHashCrawler::new(project_root, cells, ignore_specs)

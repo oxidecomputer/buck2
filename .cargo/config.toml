@@ -4,6 +4,12 @@ rustflags = [
     "tokio_unstable",
 ]
 
+[env]
+BUCK2_BUILD_PROTOC = "/opt/ooce/bin/protoc"
+BUCK2_BUILD_PROTOC_INCLUDE = "/opt/ooce/include"
+
+
+
 # @oss-disable: [source.crates-io]
 # @oss-disable: replace-with = "vendored-sources"
 
